@@ -1,6 +1,6 @@
 {
   "name": "astro-zod-to-json-schema",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Auto-generate JSON schemas from your Astro's Content Collections Zod schemas.",
   "keywords": [
     "astro-component",
@@ -40,6 +40,7 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
+    "astro": ">=3 || >=4",
     "zod": ">=3"
   }
 }

@@ -13,14 +13,25 @@ import { zodToJsonSchema } from "zod-to-json-schema";
 // @ts-expect-error Since there are auto-generated on user-land…
 import type { SchemaContext } from "astro:content";
 
+export type Options = {
+  debugMode?: boolean
+}
+
+const DEFAULT_OPTIONS: Required<Options> = {
+  debugMode: false,
+}
+
 export async function astroZodCollectionsToJsonSchemas(
   // FIXME: Some types are not accessible publiquely
   // collectionConfig: ReturnType<typeof defineCollection<any>>
-  collectionConfig: any
+  collectionConfig: any,
+  options: Options = {},
 ) {
+  const opts = { ...DEFAULT_OPTIONS, ...options };
+
   await Promise.all(
     Object.entries(collectionConfig).map(async ([key, collection]) => {
-      console.info(`Generating JSON Schema for collection "${key}"`);
+      if (opts.debugMode) console.info(`Generating JSON Schema for collection "${key}"`);
 
       // STUB!
       // NOTE: Beware, for future maintenance, syncing is needed
